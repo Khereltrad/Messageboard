@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title> En EJS </title>
+        <!-- <meta name="description" content=""> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="icon"  type="image/ico" href="img/favicon.ico">   esto es para linkear un favicon-->
+        <!-- bootstrap -->
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+
+
+        <script src="adds/less-less.js-b37922c/" type="text/javascript"></script>
+        <style>
+            .mensaje {
+                background-color: #dbd406;
+                padding: 2rem;
+            }
+        </style>
+    </head>
+
+    <body class="bg-secondary p-5">
+        <div class="row justify-content-center m-2 p-5">
+            <h3>The Dojo Message Board</h3>
+        </div>
+
+        <form action="/" class="container-lg" method="POST">
+            <div class="name-container input-box">
+                <label for="name" class="sr-only">Nombre</label>
+                <input type="text" id="name" class="form-control-sm"
+                    name="owner" placeholder="Usuario">
+            </div>
+            <div class="name-container p-3">
+                <p>Mensajes :</p>
+                <div class="row">
+                    <textarea class="textarea m-2" id="coment" name="message"
+                        style="width: -webkit-fill-available;padding:
+                        10px;height: 245px;"></textarea>
+                </div>
+            </div>
+            <div class="name-container p-2" style="text-align: right;">
+                <button type="submit" id="btnsv" class="btn btn-success btn-lg">Enviar</button>
+            </div>
+
+        </form>
+        <div class="container-md p-4 m-2" style="max-width:
+            -webkit-fill-available; border: groove;">
+            <% for (mensaje of mensajes){ %>
+                <div class="container mensaje mx-0 my-0 p-1" style="max-width:
+                    1240px;">
+                    <div class="container m-1 p-3">
+                        <div class="row p-1 ml-4">
+                        <h2><%= mensaje.owner %> </h2>
+                    </div>
+                        </div>
+                        <div class="container ml-5 p-1">
+                            <h5><%= mensaje.message %> </h5>
+                            </div>
+                            <div class="container p-1 mx-5">
+                                <div class="row p-2 ml-0.5">
+                                    <h4>Conentarios:</h4>
+                                </div>
+                                <div class="comentarios">
+                                    <div class="comentario">
+                                        <h5>Comentario 1</h5>
+                                        <p>Autor del comnentario 1</p>
+                                    </div>
+                                    <div class="comentario">
+                                        <h5>Comentario 2</h5>
+                                        <p>Autor del comnentario 2</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <div class="name-container p-3">
+                            <div class="row">
+                                <h4 class="" name="mensaje">El mensaje 1 se
+                                    muestra acá </h4>
+                            </div>
+                        </div> <!-- mostrador de mensajes -->
+                        <div class="container" data-="contenedor de
+                            comentarios del mensaje">
+
+                            acá va los comentarios existentes al mensaje -
+                            sino hay guardados no mostrar nada
+                        </div>
+                        <div class="container" data-="contenedor para
+                            comentar el mensaje">
+                        </div><!-- los comentarios del mensaje-->
+                    </div>
+                    <div class="container">
+                        aca deberia llegar los otros mensajes con sus
+                        comentarios respectivos repiticion de bloque
+                        anterior
+                    </div> <!-- llegan los N° mensajes desde la base de datos -->
+                </body>
+
+            </html>
