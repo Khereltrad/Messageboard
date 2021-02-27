@@ -4,7 +4,12 @@ const rou = Router();
 
 rou
 .get("/", async (req,res)=>{    
-    const mensajes = await Mensaje.findAll();
+    const mensajes = await Mensaje.findAll({
+        include:[{
+            model: Coment
+        }]
+    });
+    console.log(mensajes);
     res.render("index",{mensajes: mensajes});   
 })
 

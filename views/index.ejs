@@ -71,14 +71,12 @@
                             <h4>Comentarios:</h4>
                         </div>
                         <div class="comentarios">
+                            <%for (comentario of mensaje.comentarios) { %> 
                             <div class="comentario">
-                                <h5>Comentario 1</h5>
-                                <p>Autor del comnentario 1</p>
+                                <h5><%= comentario.coment%> </h5>
+                                <p><%= comentario.owner%> </p>
                             </div>
-                            <div class="comentario">
-                                <h5>Comentario 2</h5>
-                                <p>Autor del comnentario 2</p>
-                            </div>
+                            <% } %>
                             <form action="/coment" class="container-lg p-3" method="POST">  
                                 <input type="hidden" name="mensajeId" value="<%=mensaje.id%>">
                                 <h4>Añadir comentario</h4>

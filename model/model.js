@@ -28,7 +28,7 @@ const Coment = sql.define("comentarios", {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoincrement: true
+        autoIncrement: true
     },
     coment:{
         type: Sequelize.TEXT,
