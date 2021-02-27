@@ -24,20 +24,25 @@ const Mensaje = sql.define("mensajes", {
 },{ timestramps: true });
 
 
-// const Coment = sql.define("comentarios", {
-//     Id: {
-//         type: Sequelize.INTEGER,
-//         primaryKey: true,
-//         autoincrement: true
-//     },
-//     Message:{
-//         type: Sequelize.TEXT,
-//         allowNull: false
-//     },
-//     Owner:{
-//         //*captura del id del usuario quien comenta
-//     }
-// },{ timestramps: true });
+const Coment = sql.define("comentarios", {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoincrement: true
+    },
+    coment:{
+        type: Sequelize.TEXT,
+        allowNull: false
+    },
+    owner:{
+        type: Sequelize.STRING,
+        allowNull: false
+        
+    }
+},{ timestramps: true });
+
+Mensaje.hasMany(Coment);
+Coment.belongsTo(Mensaje);
 
 
 sql.sync()
@@ -45,16 +50,4 @@ sql.sync()
     console.log('Tablas creadas');
 });
 
-module.exports = {Mensaje};
-
-// module.exports = (sql, type) => {
-//     return sql.define('quotes', {
-//       id: {
-//         type: type.INTEGER,
-//         primaryKey: true,
-//         autoIncrement: true
-//       },
-//       author: type.STRING,
-//       quote: type.STRING
-//     });
-//   }
+module.exports = {Mensaje, Coment };

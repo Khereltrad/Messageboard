@@ -1,33 +1,27 @@
 const {Router}  =  require('express');
-const {Mensaje} = require("../model/model");
+const {Mensaje, Coment} = require("../model/model");
 const rou = Router();    
 
-rou.get("/", async (req,res)=>{      
+rou
+.get("/", async (req,res)=>{    
     const mensajes = await Mensaje.findAll();
-    res.render("index",{mensajes: mensajes});
-});
+    res.render("index",{mensajes: mensajes});   
+})
 
-rou.post('/', async (req,res)=>{
-    console.log(req.body);
+.post('/', async (req,res)=>{
     const new_message = await Mensaje.create(req.body);
-    res.redirect('/');
+    res.redirect('/');  
 });
 
-// rt.get("/", async (req, res) => {
-//     const mensajes = await Mensaje.findAll();
-//     res.render("index", { quotes: quotes });
-//   });
+rou
+.get("/coment", async (req,res)=>{    
+    const comentarios = await Coment.findAll();
+    res.render("index",{comentarios: comentarios});   })
 
-
-// rou.post("/usuario/new", async (req,res)=>{
-//     // const new_users = await Usuario.create({});
-//     console.log(req.body);
-//     res.redirect("/usuarios");
-// });
+.post('/coment', async (req,res)=>{
+    console.log(req.body);
+    const new_coment = await Coment.create(req.body);
+    res.redirect('/');  });
 
 module.exports =rou;
 
-// rt.get("/", async (req, res) => {
-//     const quotes = await Cita.findAll();
-//     res.render("index", { quotes: quotes });
-//   });
