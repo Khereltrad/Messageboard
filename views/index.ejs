@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
+ <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title> En EJS </title>
@@ -29,80 +29,71 @@
                 padding: 2rem;
             }
         </style>
-    </head>
-
-    <body class="bg-secondary p-5">
-        <div class="row justify-content-center m-2 p-5">
-            <h3>The Dojo Message Board</h3>
-        </div>
-
-        <form action="/" class="container-lg" method="POST">
+ </head> 
+ <body class="bg-success p-5">
+     <!-- encabezado-->
+    <div class="row justify-content-center m-2 p-4 border border-dark bg-light rounded-pill">
+        <h2>The Dojo Message Board</h2>
+    </div>
+    <!-- panel de mensajes nuevos-->
+    <div class="row border border-dark bg-secondary rounded m-3 p-2">
+        <form action="/" class="container p-3 m-3" method="POST">
             <div class="name-container input-box">
                 <label for="name" class="sr-only">Nombre</label>
-                <input type="text" id="name" class="form-control-sm"
-                    name="owner" placeholder="Usuario">
+                <input type="text" id="name" class="form-control-sm" name="owner" placeholder="Usuario">
             </div>
-            <div class="name-container p-3">
-                <p>Mensajes :</p>
+            <div class="name-container p-2">
                 <div class="row">
-                    <textarea class="textarea m-2" id="coment" name="message"
-                        style="width: -webkit-fill-available;padding:
-                        10px;height: 245px;"></textarea>
+                    <textarea class="textarea m-2" id="coment" name="message" style="width:-webkit-fill-available;padding:10px;height: 245px;" placeholder="Escriba acá su mensaje"></textarea>
                 </div>
             </div>
             <div class="name-container p-2" style="text-align: right;">
                 <button type="submit" id="btnsv" class="btn btn-success btn-lg">Enviar</button>
             </div>
-
         </form>
-        <div class="container-md p-4 m-2" style="max-width: -webkit-fill-available; border: groove;">
+    </div>
+    <!-- panel de mensajes desde la base de datos-->
+    <div class="container-md p-4 m-2" style="max-width:-webkit-fill-available; border: groove;">
             <% for (mensaje of mensajes){ %>
-                <div class="container mensaje mx-0 my-0 p-1" style="max-width: 1240px;">
-                    <div class="container m-1 p-3">
+                <div class="container mensaje mx-1 my-3 p-1 rounded" style="max-width: 1085px;">
+                    <div class="container m-3 p-2 border border-success bg-light" style="width:auto;" ;>
                         <div class="row p-1 ml-4">
-                            <h2><%= mensaje.owner %> </h2>
+                            <h3><%= mensaje.owner %> </h3>
+                        </div>
+                        <div class="container ml-4 p-1 font-italic">
+                            <h5>"<%= mensaje.message %> "</h5>
                         </div>
                     </div>
-                    <div class="container ml-5 p-1">
-                        <h5><%= mensaje.message %> </h5>
+                    <div class="row p-2 ml-3 mb-2">
+                        <h4>Comentarios:</h4>
                     </div>
-                    <div class="container p-1 mx-5">
-                        <div class="row p-2 ml-0.5">
-                            <h4>Comentarios:</h4>
-                        </div>
-                        <div class="comentarios">
-                            <%for (comentario of mensaje.comentarios) { %> 
-                            <div class="comentario">
-                                <h5><%= comentario.coment%> </h5>
-                                <p><%= comentario.owner%> </p>
+                    <div class="comentarios">
+                        <%for (comentario of mensaje.comentarios) { %>
+                            <div class="comentario p-2 mx-4 my-1 border-success border rounded bg-light font-italic">
+                                <h5>"<%= comentario.coment%> "</h5>
+                                <p class=" mx-2"><%= comentario.owner%> </p>
                             </div>
-                            <% } %>
-                            <form action="/coment" class="container-lg p-3" method="POST">  
-                                <input type="hidden" name="mensajeId" value="<%=mensaje.id%>">
-                                <h4>Añadir comentario</h4>
-                                <div class="name-container input-box">
-                                    <label for="name" class="sr-only">Nombre</label>
-                                    <input type="text" class="form-control-sm"
-                                        name="owner" placeholder="Usuario">
-                                </div>
-                                <div class="name-container p-3">
-                                    <p>Mensajes :</p>
-                                    <div class="row">
-                                        <textarea class="textarea m-2" name="coment" 
-                                            style="width: -webkit-fill-available;padding: 10px;"></textarea>
-                                    </div>
-                                </div>
-                                <div class="name-container p-2" style="text-align: right;">
-                                    <button type="submit" id="btnsv" class="btn btn-success btn-lg">Enviar</button>
-                                </div>
-                    
-                            </form>
+                        <% } %>    
+                        <form action="/coment" class="container p-3 m-4 border border-success rounded" method="POST" style="width: auto;">
+                        <input type="hidden" name="mensajeId" value="<%=mensaje.id%>">
+                        <h4>Añadir comentario</h4>
+                        <div class="name-container input-box">
+                            <label for="name" class="sr-only">Nombre</label>
+                            <input type="text" class="form-control-sm" name="owner" placeholder="Usuario">
                         </div>
+                        <div class="name-container p-3">
+                            <p>Mensajes :</p>
+                            <div class="row">
+                                <textarea class="textarea m-2" name="coment" placeholder="Comente acá" style="width: -webkit-fill-available;padding: 10px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="name-container p-2" style="text-align:right;">
+                            <button type="submit" id="btnsv" class="btn btn-success btn-lg">Enviar</button>
+                        </div>       
+                        </form>
                     </div>
                 </div>
             <% } %>
-        </div>
-
-    </body>
-
+    </div>
+ </body>
 </html>
